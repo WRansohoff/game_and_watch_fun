@@ -1,7 +1,10 @@
 # Nintendo Game and Watch Investigations 
+
 Since @ghidraninja pointed out that these devices use an STM32H7 chip with an exposed debugging port, I decided to try playing around with them.
 
-They have readout protection level 1 enabled, but it looks like they probably execute code off of their external SPI Flash chip, so it shouldn't be too hard to back up the firmware for your personal use.
+Tl;dr: thank you, Nintendo! Thanks to its openness, this is about as exciting to me as the Switch was.
+
+These devices do have readout protection level 1 enabled, but it looks like they probably execute code off of their external SPI Flash chip, so it shouldn't be too hard to back up the firmware for your personal use. Think of it as an extra puzzle game that they included for free.
 
 For now, there's only a minimal program to run on the device without erasing its Flash memory, but I'm hoping to add a program for dumping the contents of the SPI Flash chip before long.
 
@@ -116,6 +119,7 @@ DCR2: +0x0C: 0x00000001
 DCR3: +0x10: 0x00000000
 DCR4: +0x14: 0x00000000
 CCR: +0x100: 0x83032301
+TIR: +0x108: 0x00000004
 
 OCTOSPIM:    0x5200B400
 CR: +0x00:   0x00000000
