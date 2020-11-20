@@ -69,7 +69,7 @@ AFRL/AFRH = alternate function mapping.
 
 GPIOA:   0x58020000
 MODER:   0xABAABFC8
-OTYPER:  0x00000000
+OTYPER:  0x0000
 OSPEEDR: 0x0C000008
 PUPDR:   0x64000001
 AFRL:    0xE0000090
@@ -77,7 +77,7 @@ AFRH:    0x0000ECEE
 
 GPIOB:   0x58020400
 MODER:   0xA9AEABEA
-OTYPER:  0x000000C0
+OTYPER:  0x00C0
 OSPEEDR: 0x000000F8
 PUPDR:   0x00000100
 AFRL:    0x44B009B9
@@ -85,7 +85,7 @@ AFRH:    0x5E50EE0E
 
 GPIOC:   0x58020800
 MODER:   0xF3EBA3F2
-OTYPER:  0x00000000
+OTYPER:  0x0000
 OSPEEDR: 0x00000000
 PUPDR:   0x04000404
 AFRL:    0xEE00000B
@@ -93,7 +93,7 @@ AFRH:    0x00000EA0
 
 GPIOD:   0x58020C00
 MODER:   0x0E21E1A4
-OTYPER:  0x00000000
+OTYPER:  0x0000
 OSPEEDR: 0x02000000
 PUPDR:   0x50440401
 AFRL:    0x0E00E900
@@ -101,7 +101,7 @@ AFRH:    0x00090E00
 
 GPIOE:   0x58021000
 MODER:   0xBBBD2A6F
-OTYPER:  0x00000000
+OTYPER:  0x0000
 OSPEEDR: 0x00400020
 PUPDR:   0x00004000
 AFRL:    0x06660900
@@ -117,9 +117,9 @@ CR: +0x00: 0x30400301
 
 | Pin |    Mode    |   OType    | OSpeed |   PUPD    | Alt. Func. |
 |:---:|:----------:|:----------:|:------:|:---------:|:----------:|
-| A0  | Input      | N/A        | N/A    | Pull-Up   | -          |
+| A0  | Input      | N/A        | N/A    | Pull-Up   | ?          |
 | A1  | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO3  |
-| A2  | Input      | N/A        | N/A    | None      | -          |
+| A2  | Input      | N/A        | N/A    | None      | ?          |
 | A3  | Analog     | N/A        | N/A    | None      | -          |
 | A4  | Analog     | N/A        | N/A    | None      | -          |
 | A5  | Analog     | N/A        | N/A    | None      | -          |
@@ -145,16 +145,16 @@ CR: +0x00: 0x30400301
 | B9  | Analog     | N/A        | N/A    | None      | -          |
 | B10 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G4    |
 | B11 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G5    |
-| B12 | Output     | Push-Pull  | Low    | None      | -          |
+| B12 | Output     | Push-Pull  | Low    | None      | ?          |
 | B13 | Alt. Func. | Push-Pull  | Low    | None      | SPI2\_SCK  |
 | B14 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_CLK   |
 | B15 | Alt. Func. | Push-Pull  | Low    | None      | SPI2\_SDO  |
 | C0  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G2    |
-| C1  | Input      | N/A        | N/A    | Pull-Up   | -          |
+| C1  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | C2  | Analog     | N/A        | N/A    | None      | -          |
 | C3  | Analog     | N/A        | N/A    | None      | -          |
 | C4  | Analog     | N/A        | N/A    | None      | -          |
-| C5  | Input      | N/A        | N/A    | Pull-Up   | -          |
+| C5  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | C6  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_HSYNC |
 | C7  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G6    |
 | C8  | Analog     | N/A        | N/A    | None      | -          |
@@ -162,34 +162,34 @@ CR: +0x00: 0x30400301
 | C10 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_R2    |
 | C11 | Analog     | N/A        | N/A    | None      | -          |
 | C12 | Analog     | N/A        | N/A    | None      | -          |
-| C13 | Input      | N/A        | N/A    | Pull-Up   | -          |
+| C13 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | C14 | Analog     | N/A        | N/A    | None      | -          |
 | C15 | Analog     | N/A        | N/A    | None      | -          |
-| D0  | Input      | N/A        | N/A    | Pull-Up   | -          |
-| D1  | Output     | Push-Pull  | Low    | None      | -          |
+| D0  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D1  | Output     | Push-Pull  | Low    | None      | ?          |
 | D2  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B7    |
 | D3  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G7    |
-| D4  | Output     | Push-Pull  | Low    | None      | -          |
-| D5  | Input      | N/A        | N/A    | Pull-Up   | -          |
+| D4  | Output     | Push-Pull  | Low    | None      | ?          |
+| D5  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | D6  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B2    |
 | D7  | Analog     | N/A        | N/A    | None      | -          |
-| D8  | Output     | Push-Pull  | Low    | None      | -          |
-| D9  | Input      | N/A        | N/A    | Pull-Up   | -          |
+| D8  | Output     | Push-Pull  | Low    | None      | ?          |
+| D9  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | D10 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B3    |
-| D11 | Input      | N/A        | N/A    | Pull-Up   | -          |
+| D11 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | D12 | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO1  |
 | D13 | Analog     | N/A        | N/A    | None      | -          |
-| D14 | Input      | N/A        | N/A    | Pull-Up   | -          |
-| D15 | Input      | N/A        | N/A    | Pull-Up   | -          |
+| D14 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D15 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
 | E0  | Analog     | N/A        | N/A    | None      | -          |
 | E1  | Analog     | N/A        | N/A    | None      | -          |
 | E2  | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO2  |
-| E3  | Output     | Push-Pull  | Low    | None      | -          |
+| E3  | Output     | Push-Pull  | Low    | None      | ?          |
 | E4  | Alt. Func. | Push-Pull  | Low    | None      | SAI1\_FS   |
 | E5  | Alt. Func. | Push-Pull  | Low    | None      | SAI1\_SCK  |
 | E6  | Alt. Func. | Push-Pull  | Low    | None      | SAI1\_SD   |
-| E7  | Input      | N/A        | N/A    | Pull-Up   | -          |
-| E8  | Output     | Push-Pull  | Low    | None      | -          |
+| E7  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| E8  | Output     | Push-Pull  | Low    | None      | ?          |
 | E9  | Analog     | N/A        | N/A    | None      | -          |
 | E10 | Analog     | N/A        | N/A    | None      | -          |
 | E11 | Alt. Func. | Push-Pull  | Medium | None      | OSPI\_NCS  |
@@ -201,3 +201,5 @@ CR: +0x00: 0x30400301
 Yay! The QSPI Flash chip is in memory-mapped mode! That should let us execute arbitrary code and get around the readout portection.
 
 I think that SPI2 is probably used to send control signals to the display, separately from the LCD peripheral. Hopefully the display uses a typical ILI9xxx / ST7xxx command set.
+
+I would also guess that the SAI peripheral is connected to an audio codec which drives the speaker, and the I2C1 peripheral might talk to the battery management chip to get the current battery level for the GUI.
