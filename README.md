@@ -210,7 +210,7 @@ P2CR: +0x08: 0x07050333
 
 Yay! The QSPI Flash chip is in memory-mapped mode! That should let us execute arbitrary code and get around the readout portection.
 
-Flash size = `2^(DEVSIZE+1)` bytes = `2^(19+1)` = 1MiB. Pretty small, but it's something.
+Flash size = `2^(DEVSIZE+1)` bytes = `2^(19+1)` = 1MiB. Pretty small, but it's something. [The chip appears to be an MX25U8035F](https://www.macronix.com/Lists/Datasheet/Attachments/7521/MX25U8035F,%201.8V,%208Mb,%20v1.1.pdf).
 
 I think that SPI2 is probably used to send control signals to the display, separately from the LCD peripheral. Hopefully the display uses a typical ILI9xxx / ST7xxx command set.
 
