@@ -94,7 +94,7 @@ SECTIONS
     KEEP (*(.dtcm_vars))
     . = ALIGN(4);
     _edtcm = .;
-  } >DTCMRAM_V
+  } >DTCMRAM
   . = _sidtcm + ( _edtcm - _sdtcm );
 
   /* Mark the end of statically-allocated RAM. */
