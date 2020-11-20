@@ -30,7 +30,7 @@ Once you've soldered everything together, you can glue and/or tape everything in
 
 ![Connector Assembly](img/gw_conn_soldered.png)
 
-The way I glued this together, the two halves of the case can't move too far apart. I think it works okay, but you might want to glue the connector to the other side of the housing if that would bother you. Once you've verified that you can open an OpenOCD connection using the connection, snap the case back together and clean up any loose edges:
+The way I glued this together, the two halves of the case can't move too far apart. I think it works okay, but you might want to glue the connector to the other side of the housing if that would bother you. Once you've verified that you can open an OpenOCD connection using the connector, snap the case back together and clean up any loose edges:
 
 ![Connector in Case](img/gw_connector_fixed.png)
 
@@ -110,7 +110,7 @@ AFRH:    0xE0E0B000
 
 GPIOF-GPIOK regs: 0xFFFFFFFF
 
-OCTOSPI1:
+OCTOSPI1:  0x52005000
 CR: +0x00: 0x30400301
 ```
 
