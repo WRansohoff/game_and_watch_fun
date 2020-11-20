@@ -31,6 +31,9 @@ int main( void ) {
   // (Semihosting)
   initialise_monitor_handles();
 
+  // Disable interrupts.
+  __disable_irq();
+
   // Enable GPIOA, GPIOB, GPIOD, GPIOE clocks.
   RCC->AHB4ENR  |=  ( RCC_AHB4ENR_GPIOAEN |
                       RCC_AHB4ENR_GPIOBEN |
@@ -85,20 +88,73 @@ int main( void ) {
   SCK_HI();
   MOSI_LO();
 
+  // Pet the independent watchdog.
+  IWDG1->KR = 0xAAAA;
+
+  // Attempt to read the status register twice.
+  CS_LO();
+  sspi_w( 0x05 );
+  uint8_t resp = sspi_r();
+  CS_HI();
+  printf( "%02X\r\n", resp );
+  CS_LO();
+  sspi_w( 0x05 );
+  resp = sspi_r();
+  CS_HI();
+  printf( "%02X\r\n", resp );
+
+  // disable Quad-I/O if necessary.
+  if ( resp & 0x40 ) {
+    // Enable writes.
+    CS_LO();
+    sspi_w( 0x06 );
+    CS_HI();
+    // Write status/config registers.
+    CS_LO();
+    sspi_w( 0x01 );
+    sspi_w( 0x00 );
+    sspi_w( 0x00 );
+    CS_HI();
+    // Read back the status register.
+    CS_LO();
+    sspi_w( 0x05 );
+    resp = sspi_r();
+    CS_HI();
+    printf( "%02X\r\n", resp );
+  }
+
   // Main program.
   while( 1 ) {
     // Pet the independent watchdog.
     IWDG1->KR = 0xAAAA;
 
-    // Attempt to read the status register.
+    // Pull CS low and send the 'READ' command with an address of 0.
     CS_LO();
-    sspi_w( 0x05 );
-    uint8_t resp = sspi_r();
+    sspi_w( 0x03 );
+    // Replace the following byte with '0x01', '0x02', etc. if
+    // you are reading parts of the chip at a time.
+    sspi_w( 0x03 );
+    sspi_w( 0x00 );
+    sspi_w( 0x00 );
+    uint8_t bb8 = 0;
+    // Read out the Flash, one byte at a time.
+    //for ( int i = 0; i < ( 1024 * 1024 ); ++i ) {
+    // (Or only read a fraction of the Flash at a time,
+    //  since there seem to be stability issues)
+    for ( int i = 0; i < ( 1024 * 64 ); ++i ) {
+      bb8 = sspi_r();
+      printf( "%02X", bb8 );
+      if ( ( i % 1024 == 0 ) ) {
+        // Pet the independent watchdog.
+        IWDG1->KR = 0xAAAA;
+      }
+    }
+    // Pull CS high.
     CS_HI();
-    printf( "%02X\r\n", resp );
 
-    // Spin delay.
-    for ( int i=0; i<100000; ++i ) { __asm__( "nop" ); }
+    // Done.
+    printf( "\r\nDone\r\n" );
+    while ( 1 ) { __asm__( "nop" ); }
   }
   return 0; // lol
 }
