@@ -1,5 +1,4 @@
-# Nintendo Game and Watch Investigations
-
+# Nintendo Game and Watch Investigations 
 Since @ghidraninja pointed out that these devices use an STM32H7 chip with an exposed debugging port, I decided to try playing around with them.
 
 They have readout protection level 1 enabled, but it looks like they probably execute code off of their external SPI Flash chip, so it shouldn't be too hard to back up the firmware for your personal use.
@@ -113,5 +112,90 @@ GPIOF-GPIOK regs: 0xFFFFFFFF
 OCTOSPI1:  0x52005000
 CR: +0x00: 0x30400301
 ```
+
+# Tentative Pin Mapping Table
+
+| Pin |    Mode    |   OType    | OSpeed |   PUPD    | Alt. Func. |
+|:---:|:----------:|:----------:|:------:|:---------:|:----------:|
+| A0  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| A1  | Alt. Func. | Push-Pull  | High   | None      | 9          |
+| A2  | Input      | N/A        | N/A    | None      | 0          |
+| A3  | Analog     | N/A        | N/A    | None      | 0          |
+| A4  | Analog     | N/A        | N/A    | None      | 0          |
+| A5  | Analog     | N/A        | N/A    | None      | 0          |
+| A6  | Analog     | N/A        | N/A    | None      | 0          |
+| A7  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| A8  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| A9  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| A10 | Alt. Func. | Push-Pull  | Low    | None      | 12         |
+| A11 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| A12 | Analog     | N/A        | N/A    | None      | 0          |
+| A13 | Alt. Func. | Push-Pull  | V.High | Pull-Up   | 0          |
+| A14 | Alt. Func. | Push-Pull  | Low    | Pull-Down | 0          |
+| A15 | Alt. Func. | Push-Pull  | Low    | Pull-Up   | 0          |
+| B0  | Alt. Func. | Push-Pull  | High   | None      | 9          |
+| B1  | Alt. Func. | Push-Pull  | V.High | None      | 11         |
+| B2  | Alt. Func. | Push-Pull  | V.High | None      | 9          |
+| B3  | Analog     | N/A        | N/A    | None      | 0          |
+| B4  | Analog     | N/A        | N/A    | Pull-Up   | 0          |
+| B5  | Alt. Func. | Push-Pull  | Low    | None      | 11         |
+| B6  | Alt. Func. | Open-Drain | Low    | None      | 4          |
+| B7  | Alt. Func. | Open-Drain | Low    | None      | 4          |
+| B8  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| B9  | Analog     | N/A        | N/A    | None      | 0          |
+| B10 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| B11 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| B12 | Output     | Push-Pull  | Low    | None      | 0          |
+| B13 | Alt. Func. | Push-Pull  | Low    | None      | 5          |
+| B14 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| B15 | Alt. Func. | Push-Pull  | Low    | None      | 5          |
+| C0  | Alt. Func. | Push-Pull  | Low    | None      | 11         |
+| C1  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| C2  | Analog     | N/A        | N/A    | None      | 0          |
+| C3  | Analog     | N/A        | N/A    | None      | 0          |
+| C4  | Analog     | N/A        | N/A    | None      | 0          |
+| C5  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| C6  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| C7  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| C8  | Analog     | N/A        | N/A    | None      | 0          |
+| C9  | Alt. Func. | Push-Pull  | Low    | None      | 10         |
+| C10 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| C11 | Analog     | N/A        | N/A    | None      | 0          |
+| C12 | Analog     | N/A        | N/A    | None      | 0          |
+| C13 | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| C14 | Analog     | N/A        | N/A    | None      | 0          |
+| C15 | Analog     | N/A        | N/A    | None      | 0          |
+| D0  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| D1  | Output     | Push-Pull  | Low    | None      | 0          |
+| D2  | Alt. Func. | Push-Pull  | Low    | None      | 9          |
+| D3  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| D4  | Output     | Push-Pull  | Low    | None      | 0          |
+| D5  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| D6  | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| D7  | Analog     | N/A        | N/A    | None      | 0          |
+| D8  | Output     | Push-Pull  | Low    | None      | 0          |
+| D9  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| D10 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| D11 | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| D12 | Alt. Func. | Push-Pull  | High   | None      | 9          |
+| D13 | Analog     | N/A        | N/A    | None      | 0          |
+| D14 | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| D15 | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| E0  | Analog     | N/A        | N/A    | None      | 0          |
+| E1  | Analog     | N/A        | N/A    | None      | 0          |
+| E2  | Alt. Func. | Push-Pull  | High   | None      | 9          |
+| E3  | Output     | Push-Pull  | Low    | None      | 0          |
+| E4  | Alt. Func. | Push-Pull  | Low    | None      | 6          |
+| E5  | Alt. Func. | Push-Pull  | Low    | None      | 6          |
+| E6  | Alt. Func. | Push-Pull  | Low    | None      | 6          |
+| E7  | Input      | N/A        | N/A    | Pull-Up   | 0          |
+| E8  | Output     | Push-Pull  | Low    | None      | 0          |
+| E9  | Analog     | N/A        | N/A    | None      | 0          |
+| E10 | Analog     | N/A        | N/A    | None      | 0          |
+| E11 | Alt. Func. | Push-Pull  | Medium | None      | 11         |
+| E12 | Analog     | N/A        | N/A    | None      | 0          |
+| E13 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
+| E14 | Analog     | N/A        | N/A    | None      | 0          |
+| E15 | Alt. Func. | Push-Pull  | Low    | None      | 14         |
 
 Yay! The QSPI Flash chip is in memory-mapped mode! That should let us execute arbitrary code and get around the readout portection.
