@@ -111,9 +111,6 @@ OBJS += $(C_SRC:.c=.o)
 .PHONY: all
 all: $(TARGET).bin
 
-./../common/$(ST_MCU_DEF)_vt.S:
-	cd ./../common/ && python ./../common/generate_vt.py $(ST_MCU_DEF) $(MCU_SPEC)
-
 %.o: %.S
 	$(CC) -x assembler-with-cpp $(ASFLAGS) $< -o $@
 
