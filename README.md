@@ -8,6 +8,32 @@ For now, there's only a minimal program to run on the device without erasing its
 
 In the meantime, I've been poking at the stock firmware's registers to see how the pins are connected and how the peripherals are configured. Here's what I've found so far:
 
+# Fitting a Debug Connector
+
+This involves a little bit of fine soldering, but I think it's worthwhile to add a debug port if you're going to be reprogramming this board very often. From my perspective, it's one of the most attractively-priced STM32H7 development kits that I've ever seen. A display, battery, *and* case for $50? Nice.
+
+Fortunately, there's a bit of room between the speaker and the battery for a small connector. I used a 2mm-pitch row of pins, but you could probably fit 0.1" headers, especially if you omit the `V++` positive voltage pin.
+
+![Connector Placement](img/gw_connector_dremel.png)
+
+**BE SURE TO DISCONNECT THE BATTERY BEFORE SOLDERING ANYTHING!** The `V++` pin is right next to the `GND` one, and not shorting power lines together is a good rule of thumb. You can pluck the connector with red and white wires off of the board; it "clicks" in and out of the board's plastic connector from the top.
+
+You can still power the device from the USB-C port while the battery is disconnected, so it's not a bad idea to leave it unplugged while you are debugging the device. That way, un-plugging the USB cable turns into an easy way to power-cycle the board.
+
+You can probe the pins with a multimeter [like @ghidraninja did](https://www.youtube.com/watch?v=Rsi8p5gbaps), but since these mappings are public knowledge now:
+
+![Connector Wiring](img/gw_conn_wires.png)
+
+Enameled "magnet wire" isn't a bad choice for these connections, because the holes are so small and it's easy to work with. (It's not magnetic, it's just usually used in winding transformers.)
+
+Once you've soldered everything together, you can glue and/or tape everything in place:
+
+![Connector Assembly](img/gw_conn_soldered.png)
+
+The way I glued this together, the two halves of the case can't move too far apart. I think it works okay, but you might want to glue the connector to the other side of the housing if that would bother you. Once you've verified that you can open an OpenOCD connection using the connection, snap the case back together and clean up any loose edges:
+
+![Connector in Case](img/gw_connector_fixed.png)
+
 # Pin Mappings and Peripheral Configurations
 
 GPIOx: 0x58020000 + ( 0x400 * x )
