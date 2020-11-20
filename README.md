@@ -10,6 +10,7 @@ In the meantime, I've been poking at the stock firmware's registers to see how t
 
 # Pin Mappings and Peripheral Configurations
 
+```
 GPIOx: 0x58020000 + ( 0x400 * x )
 MODER: +0x00
 OTYPER: +0x04
@@ -85,5 +86,6 @@ GPIOF-GPIOK regs: 0xFFFFFFFF
 
 OCTOSPI1:
 CR: +0x00: 0x30400301
+```
 
 Yay! The QSPI Flash chip is in memory-mapped mode! That should let us execute arbitrary code and get around the readout portection.
