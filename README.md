@@ -117,7 +117,7 @@ CR: +0x00: 0x30400301
 
 | Pin |    Mode    |   OType    | OSpeed |   PUPD    | Alt. Func. |
 |:---:|:----------:|:----------:|:------:|:---------:|:----------:|
-| A0  | Input      | N/A        | N/A    | Pull-Up   | ?          |
+| A0  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | A1  | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO3  |
 | A2  | Input      | N/A        | N/A    | None      | ?          |
 | A3  | Analog     | N/A        | N/A    | None      | -          |
@@ -150,11 +150,11 @@ CR: +0x00: 0x30400301
 | B14 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_CLK   |
 | B15 | Alt. Func. | Push-Pull  | Low    | None      | SPI2\_SDO  |
 | C0  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G2    |
-| C1  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| C1  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | C2  | Analog     | N/A        | N/A    | None      | -          |
 | C3  | Analog     | N/A        | N/A    | None      | -          |
 | C4  | Analog     | N/A        | N/A    | None      | -          |
-| C5  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| C5  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | C6  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_HSYNC |
 | C7  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G6    |
 | C8  | Analog     | N/A        | N/A    | None      | -          |
@@ -162,25 +162,25 @@ CR: +0x00: 0x30400301
 | C10 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_R2    |
 | C11 | Analog     | N/A        | N/A    | None      | -          |
 | C12 | Analog     | N/A        | N/A    | None      | -          |
-| C13 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| C13 | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | C14 | Analog     | N/A        | N/A    | None      | -          |
 | C15 | Analog     | N/A        | N/A    | None      | -          |
-| D0  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D0  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | D1  | Output     | Push-Pull  | Low    | None      | ?          |
 | D2  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B7    |
 | D3  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G7    |
 | D4  | Output     | Push-Pull  | Low    | None      | ?          |
-| D5  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D5  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | D6  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B2    |
 | D7  | Analog     | N/A        | N/A    | None      | -          |
 | D8  | Output     | Push-Pull  | Low    | None      | ?          |
-| D9  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D9  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | D10 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B3    |
-| D11 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D11 | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | D12 | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO1  |
 | D13 | Analog     | N/A        | N/A    | None      | -          |
-| D14 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
-| D15 | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| D14 | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
+| D15 | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | E0  | Analog     | N/A        | N/A    | None      | -          |
 | E1  | Analog     | N/A        | N/A    | None      | -          |
 | E2  | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO2  |
@@ -188,7 +188,7 @@ CR: +0x00: 0x30400301
 | E4  | Alt. Func. | Push-Pull  | Low    | None      | SAI1\_FS   |
 | E5  | Alt. Func. | Push-Pull  | Low    | None      | SAI1\_SCK  |
 | E6  | Alt. Func. | Push-Pull  | Low    | None      | SAI1\_SD   |
-| E7  | Input      | N/A        | N/A    | Pull-Up   | Button?    |
+| E7  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
 | E8  | Output     | Push-Pull  | Low    | None      | ?          |
 | E9  | Analog     | N/A        | N/A    | None      | -          |
 | E10 | Analog     | N/A        | N/A    | None      | -          |
