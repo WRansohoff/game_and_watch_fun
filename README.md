@@ -137,7 +137,7 @@ CR: +0x00: 0x30400301
 | B1  | Alt. Func. | Push-Pull  | V.High | None      | OSPI\_IO0  |
 | B2  | Alt. Func. | Push-Pull  | V.High | None      | OSPI\_CLK  |
 | B3  | Analog     | N/A        | N/A    | None      | -          |
-| B4  | Analog     | N/A        | N/A    | Pull-Up   | -          |
+| B4  | Analog     | N/A        | N/A    | Pull-Up   | NJTRST     |
 | B5  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B5    |
 | B6  | Alt. Func. | Open-Drain | Low    | None      | I2C1\_SCL  |
 | B7  | Alt. Func. | Open-Drain | Low    | None      | I2C1\_SDA  |
