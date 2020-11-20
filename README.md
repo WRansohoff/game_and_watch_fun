@@ -109,8 +109,18 @@ AFRH:    0xE0E0B000
 
 GPIOF-GPIOK regs: 0xFFFFFFFF
 
-OCTOSPI1:  0x52005000
-CR: +0x00: 0x30400301
+OCTOSPI1:    0x52005000
+CR: +0x00:   0x30400301
+DCR1: +0x08: 0x01130108
+DCR2: +0x0C: 0x00000001
+DCR3: +0x10: 0x00000000
+DCR4: +0x14: 0x00000000
+CCR: +0x100: 0x83032301
+
+OCTOSPIM:    0x5200B400
+CR: +0x00:   0x00000000
+P1CR: +0x04: 0x03010111
+P2CR: +0x08: 0x07050333
 ```
 
 # Tentative Pin Mapping Table
@@ -199,6 +209,8 @@ CR: +0x00: 0x30400301
 | E15 | Alt. Func. | Push-Pull  | Low    | None      | LCD\_R7    |
 
 Yay! The QSPI Flash chip is in memory-mapped mode! That should let us execute arbitrary code and get around the readout portection.
+
+Flash size = `2^(DEVSIZE+1)` bytes = `2^(19+1)` = 1MiB. Pretty small, but it's something.
 
 I think that SPI2 is probably used to send control signals to the display, separately from the LCD peripheral. Hopefully the display uses a typical ILI9xxx / ST7xxx command set.
 
