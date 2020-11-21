@@ -6,7 +6,7 @@ import sys
 # Input: a filename pointing to a file containing a
 # hexadecimal string containing sparse Thumb-2 machine code.
 #
-# This depends on the 'SKIPDATA' option in Capstone,
+# This script depends on the 'SKIPDATA' option in Capstone,
 # which is currently only available in the 'next' branch.
 # So check that branch out and build it from source, don't
 # use a "pip install capstone" version.
@@ -25,5 +25,5 @@ with open( sys.argv[ 1 ], 'r' ) as f:
 
 md = Cs( CS_ARCH_ARM, CS_MODE_THUMB )
 md.skipdata = True
-for ( addr, size, mnemonic, op_str ) in md.disasm_lite( flash_log_bytes, 0 ):
+for ( addr, size, mnemonic, op_str ) in md.disasm_lite( flash_log_bytes, 0x90000000 ):
   print( "0x%x:\t%s\t%s"%( addr, mnemonic, op_str ) )
