@@ -12,7 +12,7 @@ The resulting `main.elf` file can be used by OpenOCD. Navigate to the `openocd/`
 
 J-Link:
 
-    openocd -f jlink.cfg -c "transport select swd" -f stm32h7x_dual_bank.cfg -c "gdb_memory_map disable"
+    openocd -f jlink.cfg -c "transport select swd" -f stm32h7x_dual_bank.cfg -c "gdb_memory_map disable" -c init -c "arm semihosting enable" -c halt
 
 ST-Link:
 
