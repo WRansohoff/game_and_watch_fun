@@ -115,12 +115,14 @@ int main( void ) {
     sspi_w( 0x00 );
     sspi_w( 0x00 );
     CS_HI();
-    // Read back the status register.
-    CS_LO();
-    sspi_w( 0x05 );
-    resp = sspi_r();
-    CS_HI();
-    printf( "%02X\r\n", resp );
+    // Read back the status register a few times.
+    for ( int i = 0; i < 4; ++i ) {
+      CS_LO();
+      sspi_w( 0x05 );
+      resp = sspi_r();
+      CS_HI();
+      printf( "%02X\r\n", resp );
+    }
   }
 
   // Main program.
@@ -133,7 +135,7 @@ int main( void ) {
     sspi_w( 0x03 );
     // Replace the following byte with '0x01', '0x02', etc. if
     // you are reading parts of the chip at a time.
-    sspi_w( 0x03 );
+    sspi_w( 0x00 );
     sspi_w( 0x00 );
     sspi_w( 0x00 );
     uint8_t bb8 = 0;
