@@ -36,6 +36,47 @@ The way I glued this together, the two halves of the case can't move too far apa
 
 ![Connector in Case](img/gw_connector_fixed.png)
 
+# RAM Regions
+
+You can dump a region of RAM from a GDB session:
+
+    dump binary memory [output.bin] [start_address] [end_address]
+
+The addresses are inclusive, so a range of `0x00000000` - `0x00000008` will dump the first 8 bytes of ITCM RAM.
+
+It sounds like the stock firmware loads images from external SPI Flash into RAM, so it should be possible to locate modifiable executable regions by comparing the RAM banks to the SPI Flash image at various stages.
+
+|   Region   | Start Address | End Address |  Size  |
+|:----------:|:-------------:|:-----------:|:------:|
+| Backup RAM | 0x38800000    | 0x38801000  | 4KiB   |
+| SRD RAM    | 0x38000000    | 0x38008000  | 32KiB  |
+| AHB SRAM2  | 0x30010000    | 0x30020000  | 64KiB  |
+| AHB SRAM1  | 0x30000000    | 0x30010000  | 64KiB  |
+| AXI SRAM3  | 0x240A0000    | 0x24100000  | 384KiB |
+| AXI SRAM2  | 0x24040000    | 0x240A0000  | 384KiB |
+| AXI SRAM1  | 0x24000000    | 0x24040000  | 256KiB |
+| DTCM RAM   | 0x20000000    | 0x20020000  | 128KiB |
+| ITCM RAM   | 0x00000000    | 0x00010000  | 64KiB  |
+
+Example GDB commands to dump RAM banks:
+
+```
+(gdb) target extended-remote :3333
+Remote debugging using :3333
+warning: No executable has been specified and target does not support
+determining executable automatically.  Try using the "file" command.
+0xfffffffe in ?? ()
+(gdb) dump binary memory time_bkp.bin  0x38800000 0x38801000
+(gdb) dump binary memory time_srd.bin  0x38000000 0x38008000
+(gdb) dump binary memory time_ahb2.bin 0x30010000 0x30020000
+(gdb) dump binary memory time_ahb1.bin 0x30000000 0x30010000
+(gdb) dump binary memory time_axi3.bin 0x240A0000 0x24100000
+(gdb) dump binary memory time_axi2.bin 0x24040000 0x240A0000
+(gdb) dump binary memory time_axi1.bin 0x24000000 0x24040000
+(gdb) dump binary memory time_dtcm.bin 0x20000000 0x20020000
+(gdb) dump binary memory time_itcm.bin 0x00000000 0x00010000
+```
+
 # Pin Mappings and Peripheral Configurations
 
 ```
