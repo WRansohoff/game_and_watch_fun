@@ -182,9 +182,9 @@ P2CR: +0x08: 0x07050333
 | A1  | Alt. Func. | Push-Pull  | High   | None      | OSPI\_IO3  |
 | A2  | Input      | N/A        | N/A    | None      | ?          |
 | A3  | Analog     | N/A        | N/A    | None      | -          |
-| A4  | Analog     | N/A        | N/A    | None      | -          |
+| A4  | Analog     | N/A        | N/A    | None      | Backlight  |
 | A5  | Analog     | N/A        | N/A    | None      | Backlight  |
-| A6  | Analog     | N/A        | N/A    | None      | -          |
+| A6  | Analog     | N/A        | N/A    | None      | Backlight  |
 | A7  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_VSYNC |
 | A8  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_R6    |
 | A9  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_R5    |
@@ -265,7 +265,7 @@ Flash size = `2^(DEVSIZE+1)` bytes = `2^(19+1)` = 1MiB. Pretty small, but it's s
 
 The LCD appears to be an Innolux model (`ZJ024NA-17A`), and if the similar `ZJ050NA-08C` is any indication, it uses a raw LCD interface with no command channel. If we're lucky, it might be as easy as sending a framebuffer over the LTDC peripheral. It is probably QVGA (240x320-px). Signals RGB[2:7] are used, so it probably supports up to 18 bits of color per pixel.
 
-Pin `A5` is connected to the gate of an NPN transistor which connnects to the backlight cathodes (I think, but it could be the anodes). This pin is configured in "Analog" mode, so...I guess the stock firmware might use the `DAC1_2` output instead of PWM to control brightness? That would be interesting.
+Pins `A4`, `A5`, and `A6` are connected to the gates of NPN transistors which connnect to the three backlight cathodes (I think, but they could be anodes). These pins are configured in "Analog" mode, so...I guess the stock firmware might use the DAC outputs instead of PWM to control brightness? That would be interesting.
 
 I would also guess that the SAI peripheral is connected to an audio codec which drives the speaker, and the I2C1 peripheral might talk to the battery management chip to get the current battery level for the GUI.
 
