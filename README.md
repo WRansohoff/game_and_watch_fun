@@ -6,7 +6,7 @@ Tl;dr: thank you, Nintendo! Thanks to its openness, this is about as exciting to
 
 These devices do have readout protection level 1 enabled, but it looks like they probably execute code off of their external SPI Flash chip, so it shouldn't be too hard to back up the firmware for your personal use. Think of it as an extra puzzle game that they included for free.
 
-For now, there's only a minimal program to run on the device without erasing its Flash memory, but I'm hoping to add a program for dumping the contents of the SPI Flash chip before long.
+I haven't figured out how to dump the device's stock firmware yet, but there is a `sspi_read` program which can be loaded into RAM to read out the contents of the external SPI Flash chip.
 
 In the meantime, I've been poking at the stock firmware's registers to see how the pins are connected and how the peripherals are configured. Here's what I've found so far:
 
