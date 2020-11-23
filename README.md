@@ -183,7 +183,7 @@ P2CR: +0x08: 0x07050333
 | A2  | Input      | N/A        | N/A    | None      | ?          |
 | A3  | Analog     | N/A        | N/A    | None      | -          |
 | A4  | Analog     | N/A        | N/A    | None      | -          |
-| A5  | Analog     | N/A        | N/A    | None      | -          |
+| A5  | Analog     | N/A        | N/A    | None      | Backlight  |
 | A6  | Analog     | N/A        | N/A    | None      | -          |
 | A7  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_VSYNC |
 | A8  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_R6    |
@@ -263,6 +263,32 @@ Yay! The QSPI Flash chip is in memory-mapped mode! That should let us execute ar
 
 Flash size = `2^(DEVSIZE+1)` bytes = `2^(19+1)` = 1MiB. Pretty small, but it's something. [The chip appears to be an MX25U8035F](https://www.macronix.com/Lists/Datasheet/Attachments/7521/MX25U8035F,%201.8V,%208Mb,%20v1.1.pdf).
 
-I think that SPI2 is probably used to send control signals to the display, separately from the LCD peripheral. Hopefully the display uses a typical ILI9xxx / ST7xxx command set.
+The LCD appears to be an Innolux model (`ZJ024NA-17A`), and if the similar `ZJ050NA-08C` is any indication, it uses a raw LCD interface with no command channel. If we're lucky, it might be as easy as sending a framebuffer over the LTDC peripheral. It is probably QVGA (240x320-px). Signals RGB[2:7] are used, so it probably supports up to 18 bits of color per pixel.
+
+Pin `A5` is connected to the gate of an NPN transistor which connnects to the backlight cathodes (I think, but it could be the anodes). This pin is configured in "Analog" mode, so...I guess the stock firmware might use the `DAC1_2` output instead of PWM to control brightness? That would be interesting.
 
 I would also guess that the SAI peripheral is connected to an audio codec which drives the speaker, and the I2C1 peripheral might talk to the battery management chip to get the current battery level for the GUI.
+
+# Unlocking the Internal Flash Memory
+
+You can turn your Game and Watch into a general-purpose STM32H7B0VB development kit by unlocking the Flash memory. This will remove the read protection, but it will also **permanently erase the original Flash image**.
+
+If you unlock your chip without finding a way to dump the internal memory first, you will never be able to use the device as intended again. (Well, not unless you find the original ROM image somewhere else.)
+
+So I would not recommend doing this until you have a copy of the original program image. But it's easy to do. Open an OpenOCD connection:
+
+    openocd -f jlink.cfg -c "transport select swd" -f stm32h7x_dual_bank.cfg
+
+Or:
+
+    openocd -f stlink.cfg -f stm32h7x_dual_bank.cfg
+
+Then connect to the OpenOCD interface with `telnet localhost 4444` and run these commands:
+
+```
+reset halt
+stm32h7x unlock 0
+exit
+```
+
+Power-cycle the board, and you're good to go. But you'll need to write your own firmware to communicate with the various on-board devices, so it might be a good idea to keep one device on the stock firmware so you can probe various communications.
