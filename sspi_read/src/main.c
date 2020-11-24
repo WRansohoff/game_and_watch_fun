@@ -65,15 +65,18 @@ int main( void ) {
   GPIOE->OSPEEDR  |=  ( 3 << ( 11 * 2 ) );
   // Initialize unused IO2/IO3 in 'high' position.
   GPIOA->MODER    &= ~( 3 << ( 1 * 2 ) );
-  //GPIOA->MODER    |=  ( 1 << ( 1 * 2 ) );
-  //GPIOA->ODR      |=  ( 1 << 1 );
+  GPIOA->MODER    |=  ( 1 << ( 1 * 2 ) );
+  GPIOA->ODR      |=  ( 1 << 1 );
   GPIOE->MODER    &= ~( 3 << ( 2 * 2 ) );
-  //GPIOE->MODER    |=  ( 1 << ( 2 * 2 ) );
-  //GPIOE->ODR      |=  ( 1 << 2 );
-  // Try B12, E3, D4, D8 high.
+  GPIOE->MODER    |=  ( 1 << ( 2 * 2 ) );
+  GPIOE->ODR      |=  ( 1 << 2 );
+  // Try B12, E3, D4, D8 high and D1 low.
   GPIOB->MODER    &= ~( 3 << ( 12 * 2 ) );
   GPIOB->MODER    |=  ( 1 << ( 12 * 2 ) );
   GPIOB->ODR      |=  ( 1 << 12 );
+  GPIOD->MODER    &= ~( 3 << ( 1 * 2 ) );
+  GPIOD->MODER    |=  ( 1 << ( 1 * 2 ) );
+  GPIOD->ODR      &= ~( 1 << 1 );
   GPIOD->MODER    &= ~( 3 << ( 4 * 2 ) );
   GPIOD->MODER    |=  ( 1 << ( 4 * 2 ) );
   GPIOD->ODR      |=  ( 1 << 4 );
@@ -104,6 +107,7 @@ int main( void ) {
   printf( "%02X\r\n", resp );
 
   // disable Quad-I/O if necessary.
+  /*
   if ( resp & 0x40 ) {
     // Enable writes.
     CS_LO();
@@ -124,6 +128,7 @@ int main( void ) {
       printf( "%02X\r\n", resp );
     }
   }
+  */
 
   // Main program.
   while( 1 ) {
@@ -135,7 +140,7 @@ int main( void ) {
     sspi_w( 0x03 );
     // Replace the following byte with '0x01', '0x02', etc. if
     // you are reading parts of the chip at a time.
-    sspi_w( 0x00 );
+    sspi_w( 0x0F );
     sspi_w( 0x00 );
     sspi_w( 0x00 );
     uint8_t bb8 = 0;

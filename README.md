@@ -172,6 +172,24 @@ OCTOSPIM:    0x5200B400
 CR: +0x00:   0x00000000
 P1CR: +0x04: 0x03010111
 P2CR: +0x08: 0x07050333
+
+LTDC (Display):  0x50001000
+?:        +0x00: 0x00010300
+?:        +0x04: 0x00000002
+SSCR:     +0x08: 0x00090001
+BPCR:     +0x0C: 0x003C0007
+AWCR:     +0x10: 0x017C00F7
+TWCR:     +0x14: 0x018800FF
+GCR:      +0x18: 0x10002221
+?:        +0x20: 0x00000030
+SRCR:     +0x24: 0x00000000
+IER:      +0x34: 0x00000006
+LIPCR:    +0x40: 0x00000000
+L1PFCR:   +0x94: 0x00000002 (16bpp RGB-565)
+L1CFBAR:  +0xAC: 0x2403F800 (FB1 in AXI SRAM)
+L2CFBAR: +0x12C: 0x24077C00 (FB2 in AXI SRAM)
+L1CFBLR:  +0xB0: 0x02800287 (320px wide)
+L1CFBLNR: +0xB4: 0x000000F0 (240px tall)
 ```
 
 # Tentative Pin Mapping Table
@@ -227,7 +245,7 @@ P2CR: +0x08: 0x07050333
 | C14 | Analog     | N/A        | N/A    | None      | -          |
 | C15 | Analog     | N/A        | N/A    | None      | -          |
 | D0  | Input      | N/A        | N/A    | Pull-Up   | Button/IRQ |
-| D1  | Output     | Push-Pull  | Low    | None      | ?          |
+| D1  | Output     | Push-Pull  | Low    | None      | QSPI On/Off (0/1) |
 | D2  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_B7    |
 | D3  | Alt. Func. | Push-Pull  | Low    | None      | LCD\_G7    |
 | D4  | Output     | Push-Pull  | Low    | None      | ?          |
